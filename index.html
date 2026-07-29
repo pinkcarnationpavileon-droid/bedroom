@@ -42,7 +42,7 @@
       width: 100vw;
       height: 100vh;
       background-color: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(5px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -55,7 +55,7 @@
     .overlay.hidden {
       opacity: 0;
       visibility: hidden;
-      pointer-events: none; /* Disables overlay clicks once closed */
+      pointer-events: none;
     }
 
     /* Envelope Box */
@@ -67,7 +67,6 @@
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      margin-top: 60px;
       
       /* Animation 1: Slide Up from Bottom */
       animation: slideUpEnvelope 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
@@ -94,7 +93,7 @@
       z-index: 3;
       
       /* Animation 2: Open Flap */
-      animation: openFlap 0.5s ease 1.1s forwards;
+      animation: openFlap 0.5s ease 1.0s forwards;
     }
 
     @keyframes openFlap {
@@ -104,7 +103,7 @@
       }
     }
 
-    /* Envelope Front Pocket */
+    /* Envelope Front Pocket (Fades out when letter pops) */
     .envelope-front {
       position: absolute;
       bottom: 0;
@@ -118,6 +117,21 @@
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
       z-index: 3;
+      
+      /* Animation 3: Envelope components fade out */
+      animation: fadeEnvelope 0.5s ease 1.7s forwards;
+    }
+
+    .envelope-flap, .envelope-wrapper {
+      animation-fill-mode: forwards;
+    }
+
+    /* Fades the envelope body out so only the letter remains */
+    @keyframes fadeEnvelope {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
     }
 
     /* Letter Inside */
@@ -127,40 +141,37 @@
       left: 15px;
       width: 270px;
       background: #ffffff;
-      border-radius: 12px;
-      padding: 20px 15px;
+      border-radius: 16px;
+      padding: 30px 20px;
       box-sizing: border-box;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
       z-index: 2;
       
-      /* Animation 3: Hop Out after Flap Opens */
-      animation: letterHop 0.7s ease 1.6s forwards;
+      /* Animation 4: Hop Out and expand to take up screen */
+      animation: letterPopAndZoom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s forwards;
     }
 
-    @keyframes letterHop {
+    @keyframes letterPopAndZoom {
       0% {
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
         z-index: 2;
       }
-      60% {
-        transform: translateY(-160px);
-        z-index: 4; /* Brings letter above front flap halfway through hop */
-      }
-      80% {
-        transform: translateY(-130px);
-        z-index: 4;
+      50% {
+        transform: translateY(-160px) scale(1.1);
+        z-index: 100;
       }
       100% {
-        transform: translateY(-140px);
-        z-index: 4; /* Stays on top so button receives clicks */
+        /* Pops up higher and zooms in to fill most of screen width */
+        transform: translateY(-80px) scale(1.5);
+        z-index: 100;
       }
     }
 
     /* Button Styling */
     .confirm-btn {
-      margin-top: 15px;
-      padding: 8px 20px;
+      margin-top: 20px;
+      padding: 10px 24px;
       background-color: #ff85a2;
       color: white;
       border: none;
@@ -169,7 +180,8 @@
       font-weight: bold;
       cursor: pointer;
       position: relative;
-      z-index: 10;
+      z-index: 101;
+      pointer-events: auto;
       transition: background-color 0.2s ease, transform 0.1s ease;
     }
 
@@ -183,13 +195,13 @@
 <body>
 
   <div class="overlay" id="modalOverlay">
-    <div class="envelope-wrapper">
+    <div class="envelope-wrapper" id="envelopeWrapper">
       <div class="envelope-flap"></div>
       
       <div class="letter">
-        <h2 style="color: #ff6088; font-size: 1.3rem;">💌 You're Invited!</h2>
-        <p style="margin-top: 8px; color: #666; font-size: 0.9rem;">Welcome to my bedroom site! Make yourself at home.</p>
-        <button type="button" class="confirm-btn" onclick="closeInvitation()">Come On In!</button>
+        <h2 style="color: #ff6088; font-size: 1.2rem;">💌 You're Invited!</h2>
+        <p style="margin-top: 10px; color: #555; font-size: 0.85rem; line-height: 1.3;">Welcome to my bedroom site! Make yourself at home.</p>
+        <button type="button" class="confirm-btn" onclick="dismissModal()">Come On In!</button>
       </div>
 
       <div class="envelope-front"></div>
@@ -220,14 +232,20 @@
   </main>
 
   <script>
-    function closeInvitation() {
-      document.getElementById('modalOverlay').classList.add('hidden');
+    function dismissModal() {
+      // Hide the overlay backdrop, card, and animations completely
+      const overlay = document.getElementById('modalOverlay');
+      if (overlay) {
+        overlay.classList.add('hidden');
+      }
     }
 
     function playAudio() {
       const audio = document.getElementById('audio');
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      }
     }
   </script>
 
