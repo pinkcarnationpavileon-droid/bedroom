@@ -34,7 +34,7 @@
     .Arrow5 { position: absolute; top: 5vw; left: 41vw; height: 80px; width: 80px; }
     .Arrow6 { position: absolute; top: 5vw; left: 58vw; height: 75px; width: 78px; }
 
-    /* Modal Backdrop / Overlay */
+    /* Dim Backdrop Overlay */
     .overlay {
       position: fixed;
       top: 0;
@@ -48,7 +48,7 @@
       align-items: center;
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
       z-index: 1000;
     }
 
@@ -57,7 +57,7 @@
       visibility: hidden;
     }
 
-    /* Envelope Container starting off-screen at bottom */
+    /* Envelope Box */
     .envelope-wrapper {
       position: relative;
       width: 300px;
@@ -66,19 +66,20 @@
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      margin-top: 80px;
+      margin-top: 60px;
       
-      /* Start below screen */
-      transform: translateY(120vh);
-      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      /* Animation 1: Slide Up from Bottom */
+      animation: slideUpEnvelope 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
+      transform: translateY(100vh); /* Starts below screen */
     }
 
-    /* Envelope Slide Up State */
-    .envelope-wrapper.slide-in {
-      transform: translateY(0);
+    @keyframes slideUpEnvelope {
+      to {
+        transform: translateY(0);
+      }
     }
 
-    /* Top flap of envelope */
+    /* Top Flap */
     .envelope-flap {
       position: absolute;
       top: 0;
@@ -89,17 +90,20 @@
       border-right: 150px solid transparent;
       border-top: 110px solid #e293a8;
       transform-origin: top;
-      transition: transform 0.4s ease;
       z-index: 3;
+      
+      /* Animation 2: Open Flap after Envelope arrives */
+      animation: openFlap 0.5s ease 1.1s forwards;
     }
 
-    /* Open Flap State */
-    .envelope-wrapper.open .envelope-flap {
-      transform: rotateX(180deg);
-      z-index: 1;
+    @keyframes openFlap {
+      to {
+        transform: rotateX(180deg);
+        z-index: 1;
+      }
     }
 
-    /* Envelope Pocket Front */
+    /* Envelope Front Pocket */
     .envelope-front {
       position: absolute;
       bottom: 0;
@@ -115,7 +119,7 @@
       z-index: 3;
     }
 
-    /* The Invitation Letter Inside */
+    /* Letter Inside */
     .letter {
       position: absolute;
       bottom: 10px;
@@ -128,31 +132,27 @@
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
       z-index: 2;
-      transition: transform 0.6s ease;
+      
+      /* Animation 3: Hop Out after Flap Opens */
+      animation: letterHop 0.7s ease 1.6s forwards;
     }
 
-    /* Letter Hop Animation keyframes */
     @keyframes letterHop {
       0% {
         transform: translateY(0);
       }
       60% {
-        transform: translateY(-160px); /* Hops up high out of the envelope */
+        transform: translateY(-160px);
       }
       80% {
-        transform: translateY(-130px); /* Drops slightly down */
+        transform: translateY(-130px);
       }
       100% {
-        transform: translateY(-140px); /* Settles nicely in position */
+        transform: translateY(-140px);
       }
     }
 
-    /* Trigger Letter Hop Class */
-    .envelope-wrapper.hop .letter {
-      animation: letterHop 0.8s forwards ease-out;
-    }
-
-    /* Confirmation Button */
+    /* Button Styling */
     .confirm-btn {
       margin-top: 15px;
       padding: 8px 20px;
@@ -176,7 +176,7 @@
 <body>
 
   <div class="overlay" id="modalOverlay">
-    <div class="envelope-wrapper" id="envelope">
+    <div class="envelope-wrapper">
       <div class="envelope-flap"></div>
       
       <div class="letter">
@@ -213,28 +213,7 @@
   </main>
 
   <script>
-    // Sequenced Animation Trigger
-    window.addEventListener('DOMContentLoaded', () => {
-      const envelope = document.getElementById('envelope');
-
-      // 1. Envelope slides up from bottom
-      setTimeout(() => {
-        envelope.classList.add('slide-in');
-      }, 300);
-
-      // 2. Envelope flap opens
-      setTimeout(() => {
-        envelope.classList.add('open');
-      }, 1200);
-
-      // 3. Letter hops out
-      setTimeout(() => {
-        envelope.classList.add('hop');
-      }, 1600);
-    });
-
     function closeInvitation() {
-      // Fade out and hide the overlay backdrop and envelope
       document.getElementById('modalOverlay').classList.add('hidden');
     }
 
