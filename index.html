@@ -105,7 +105,7 @@
       background-image: url('https://nicegirlslumber.neocities.org/waxpapertemp.png');
       background-size: cover;
       background-position: center;
-      opacity: 0.35; /* Controls texture transparency over pink */
+      opacity: 0.35;
       clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
       pointer-events: none;
     }
@@ -145,7 +145,7 @@
       background-image: url('https://nicegirlslumber.neocities.org/waxpapertemp.png');
       background-size: cover;
       background-position: center;
-      opacity: 0.35; /* Controls texture transparency over pink */
+      opacity: 0.35;
       clip-path: polygon(0% 0%, 50% 50%, 100% 0%, 100% 100%, 0% 100%);
       pointer-events: none;
     }
@@ -208,26 +208,28 @@
       }
     }
 
-    /* Button Styling */
+    /* Rounded Button with White Outline & Light Glow */
     .confirm-btn {
       margin-top: 20px;
       padding: 10px 24px;
       background-color: #ff85a2;
       color: white;
-      border: none;
-      border-radius: 0px;
+      border: 2px solid #ffffff; /* Crisp white outline */
+      border-radius: 25px;       /* Rounded pill shape */
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Soft light glow */
       font-size: 0.95rem;
       font-weight: bold;
       cursor: pointer;
       position: relative;
       z-index: 101;
       pointer-events: auto;
-      transition: background-color 0.2s ease, transform 0.1s ease;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .confirm-btn:hover {
       background-color: #ff6088;
       transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.9); /* Brighter glow on hover */
     }
   </style>
 </head>
