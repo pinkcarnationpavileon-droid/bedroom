@@ -24,7 +24,6 @@
       height: 100vh;
     }
 
-    /* Navigation Wrappers */
     .nav-item {
       position: absolute;
       display: inline-block;
@@ -37,7 +36,6 @@
     .Arrow5 { top: 5vw; left: 41vw; width: 80px; height: 80px; }
     .Arrow6 { top: 5vw; left: 58vw; width: 78px; height: 75px; }
 
-    /* Fade-up Tooltips for Arrows */
     .tooltip {
       position: absolute;
       bottom: 100%;
@@ -65,7 +63,6 @@
       transform: translateX(-50%) translateY(-6px);
     }
 
-    /* Modal Overlay */
     .overlay {
       position: fixed;
       inset: 0;
@@ -144,7 +141,6 @@
       pointer-events: none;
     }
 
-    /* Letter - Sharp Edges & Shifted Up */
     .letter {
       position: absolute;
       bottom: 10px;
@@ -153,7 +149,7 @@
       padding: 30px 20px;
       text-align: center;
       background: url('https://nicegirlslumber.neocities.org/waxpapertemp.png') center/cover no-repeat;
-      border-radius: 0px; /* Sharp edges */
+      border-radius: 0px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
       z-index: 2;
       animation: popAndZoom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s forwards;
@@ -211,18 +207,17 @@
       }
     }
 
-    /* Pop out and center closer to 40px from the top */
     @keyframes popAndZoom {
       0% {
         transform: translateY(0) scale(1);
         z-index: 2;
       }
       50% {
-        transform: translateY(-200px) scale(1.1);
+        transform: translateY(-80px) scale(1.1);
         z-index: 100;
       }
       100% {
-        transform: translateY(-135px) scale(1.45);
+        transform: translateY(40px) scale(1.45);
         z-index: 100;
       }
     }
