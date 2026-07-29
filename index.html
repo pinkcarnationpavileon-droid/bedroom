@@ -34,7 +34,7 @@
     .Arrow5 { position: absolute; top: 5vw; left: 41vw; height: 80px; width: 80px; }
     .Arrow6 { position: absolute; top: 5vw; left: 58vw; height: 75px; width: 78px; }
 
-    /* Modal Backdrop / Dim overlay */
+    /* Modal Backdrop / Overlay */
     .overlay {
       position: fixed;
       top: 0;
@@ -57,7 +57,7 @@
       visibility: hidden;
     }
 
-    /* Envelope Wrapper Container */
+    /* Envelope Container starting off-screen at bottom */
     .envelope-wrapper {
       position: relative;
       width: 300px;
@@ -66,7 +66,16 @@
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      margin-top: 50px;
+      margin-top: 80px;
+      
+      /* Start below screen */
+      transform: translateY(120vh);
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Envelope Slide Up State */
+    .envelope-wrapper.slide-in {
+      transform: translateY(0);
     }
 
     /* Top flap of envelope */
@@ -80,17 +89,17 @@
       border-right: 150px solid transparent;
       border-top: 110px solid #e293a8;
       transform-origin: top;
-      transition: transform 0.5s ease 0.2s;
+      transition: transform 0.4s ease;
       z-index: 3;
     }
 
-    /* Open flap rotation state */
+    /* Open Flap State */
     .envelope-wrapper.open .envelope-flap {
       transform: rotateX(180deg);
       z-index: 1;
     }
 
-    /* Envelope pocket front */
+    /* Envelope Pocket Front */
     .envelope-front {
       position: absolute;
       bottom: 0;
@@ -119,12 +128,28 @@
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
       z-index: 2;
-      transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s;
+      transition: transform 0.6s ease;
     }
 
-    /* Slide Up Letter Animation */
-    .envelope-wrapper.open .letter {
-      transform: translateY(-130px);
+    /* Letter Hop Animation keyframes */
+    @keyframes letterHop {
+      0% {
+        transform: translateY(0);
+      }
+      60% {
+        transform: translateY(-160px); /* Hops up high out of the envelope */
+      }
+      80% {
+        transform: translateY(-130px); /* Drops slightly down */
+      }
+      100% {
+        transform: translateY(-140px); /* Settles nicely in position */
+      }
+    }
+
+    /* Trigger Letter Hop Class */
+    .envelope-wrapper.hop .letter {
+      animation: letterHop 0.8s forwards ease-out;
     }
 
     /* Confirmation Button */
@@ -153,59 +178,3 @@
   <div class="overlay" id="modalOverlay">
     <div class="envelope-wrapper" id="envelope">
       <div class="envelope-flap"></div>
-      
-      <div class="letter">
-        <h2 style="color: #ff6088; font-size: 1.3rem;">💌 You're Invited!</h2>
-        <p style="margin-top: 8px; color: #666; font-size: 0.9rem;">Welcome to my bedroom site! Make yourself at home.</p>
-        <button class="confirm-btn" onclick="closeInvitation()">Come On In!</button>
-      </div>
-
-      <div class="envelope-front"></div>
-    </div>
-  </div>
-
-  <main class="container">
-    <audio id="audio" src="https://file.garden/aXAN9qfqA36RH-Az/Concept%20website%200.3/benkirb-shine-11-268907%20(1).mp3"></audio>
-
-    <a href="https://nicegirlslumber.neocities.org/Diary">
-      <img src="https://nicegirlslumber.neocities.org/Arrow5.png" onmouseover="playAudio()" alt="diary entrance" class="Arrow1">
-    </a>
-    <a href="https://nicegirlslumber.neocities.org/Guestbook">
-      <img src="https://nicegirlslumber.neocities.org/Arrow2.png" onmouseover="playAudio()" alt="guestbook" class="Arrow2">
-    </a> 
-    <a href="https://nicegirlslumber.neocities.org/Gallery">
-      <img src="https://nicegirlslumber.neocities.org/Arrow9.png" onmouseover="playAudio()" alt="gallery entrance" class="Arrow3">
-    </a> 
-    <a href="https://nicegirlslumber.neocities.org/Shrines">
-      <img src="https://nicegirlslumber.neocities.org/Arrow3.png" onmouseover="playAudio()" alt="Shrines" class="Arrow4">
-    </a>
-    <a href="https://nicegirlslumber.neocities.org/Dressup">
-      <img src="https://nicegirlslumber.neocities.org/Arrow10.png" onmouseover="playAudio()" alt="Dressup" class="Arrow5">
-    </a>
-    <a href="https://nicegirlslumber.neocities.org/Balcony">
-      <img src="https://nicegirlslumber.neocities.org/Arrow8.png" onmouseover="playAudio()" alt="lets listen to music" class="Arrow6">
-    </a>
-  </main>
-
-  <script>
-    // Trigger envelope open sequence when page loads
-    window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        document.getElementById('envelope').classList.add('open');
-      }, 300);
-    });
-
-    function closeInvitation() {
-      // Fade out and hide the overlay backdrop and envelope
-      document.getElementById('modalOverlay').classList.add('hidden');
-    }
-
-    function playAudio() {
-      const audio = document.getElementById('audio');
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
-    }
-  </script>
-
-</body>
-</html>
