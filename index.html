@@ -1,55 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>make urself at home!!</title>
-  <link rel="icon" type="image/jpeg" href="https://nicegirlslumber.neocities.org/newfavicon.png" alt="myface">
+  <link rel="icon" type="image/jpeg" href="https://nicegirlslumber.neocities.org/newfavicon.png">
+  
   <style>
-    html {
-      font-size: 95%;
-      height: 100%;
-      margin: 0; 
-    }
     * {
       margin: 0;
       padding: 0;
-      cursor: auto;
+      box-sizing: border-box;
     }
-    body { 
-      background-image: url(https://file.garden/aXAN9qfqA36RH-Az/Concept%20website%200.3/realbedroomgurl.png);
-      background-position: center; 
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-      height: 100vh;
+
+    html, body {
+      height: 100%;
       overflow: hidden;
+      font-size: 95%;
     }
 
-    /* Arrow Styles */
-    .Arrow1 { position: absolute; top: 26vw; left: 43vw; height: 90px; width: 90px; }
-    .Arrow2 { position: absolute; bottom: 4vw; right: 21vw; height: 90px; width: 90px; }
-    .Arrow3 { position: absolute; top: 10vw; left: 70vw; height: 80px; width: 80px; }
-    .Arrow4 { position: absolute; bottom: 13vw; right: 6vw; height: 70px; width: 70px; }
-    .Arrow5 { position: absolute; top: 5vw; left: 41vw; height: 80px; width: 80px; }
-    .Arrow6 { position: absolute; top: 5vw; left: 58vw; height: 75px; width: 78px; }
+    body { 
+      background: url('https://file.garden/aXAN9qfqA36RH-Az/Concept%20website%200.3/realbedroomgurl.png') center/cover no-repeat fixed;
+      height: 100vh;
+    }
 
-    /* Dim Backdrop Overlay */
+    .Arrow1 { position: absolute; top: 26vw; left: 43vw; width: 90px; height: 90px; }
+    .Arrow2 { position: absolute; bottom: 4vw; right: 21vw; width: 90px; height: 90px; }
+    .Arrow3 { position: absolute; top: 10vw; left: 70vw; width: 80px; height: 80px; }
+    .Arrow4 { position: absolute; bottom: 13vw; right: 6vw; width: 70px; height: 70px; }
+    .Arrow5 { position: absolute; top: 5vw; left: 41vw; width: 80px; height: 80px; }
+    .Arrow6 { position: absolute; top: 5vw; left: 58vw; width: 78px; height: 75px; }
+
     .overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      inset: 0;
       background-color: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(5px);
       display: flex;
       justify-content: center;
       align-items: center;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
       z-index: 1000;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
     .overlay.hidden {
@@ -58,43 +49,28 @@
       pointer-events: none;
     }
 
-    /* Envelope Box Base */
     .envelope-wrapper {
       position: relative;
       width: 300px;
       height: 200px;
       background-color: #f2acbf;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      
-      /* Animation 1: Slide Up from Bottom */
-      animation: slideUpEnvelope 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
       transform: translateY(100vh);
+      animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
     }
 
-    @keyframes slideUpEnvelope {
-      to {
-        transform: translateY(0);
-      }
-    }
-
-    /* Top Flap with semi-transparent texture */
     .envelope-flap {
       position: absolute;
       top: 0;
       left: 0;
-      width: 0;
-      height: 0;
       border-left: 150px solid transparent;
       border-right: 150px solid transparent;
       border-top: 110px solid #e293a8;
       transform-origin: top;
       z-index: 3;
-      
-      /* Animation 2: Open Flap */
-      animation: openFlap 0.5s ease 1.0s forwards;
+      animation: openFlap 0.5s ease 1s forwards;
     }
 
-    /* Textured Overlay for Top Flap */
     .envelope-flap::after {
       content: '';
       position: absolute;
@@ -102,12 +78,87 @@
       left: -150px;
       width: 300px;
       height: 110px;
-      background-image: url('https://nicegirlslumber.neocities.org/waxpapertemp.png');
-      background-size: cover;
-      background-position: center;
+      background: url('https://nicegirlslumber.neocities.org/waxpapertemp.png') center/cover;
       opacity: 0.35;
       clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
       pointer-events: none;
+    }
+
+    .envelope-front {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-left: 150px solid #f6b8c9;
+      border-right: 150px solid #f6b8c9;
+      border-top: 100px solid transparent;
+      border-bottom: 100px solid #f6b8c9;
+      z-index: 3;
+      animation: fadeOut 0.5s ease 1.7s forwards;
+    }
+
+    .envelope-front::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -150px;
+      width: 300px;
+      height: 200px;
+      background: url('https://nicegirlslumber.neocities.org/waxpapertemp.png') center/cover;
+      opacity: 0.35;
+      clip-path: polygon(0% 0%, 50% 50%, 100% 0%, 100% 100%, 0% 100%);
+      pointer-events: none;
+    }
+
+    .letter {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      width: 270px;
+      padding: 30px 20px;
+      text-align: center;
+      background: url('https://nicegirlslumber.neocities.org/waxpapertemp.png') center/cover no-repeat;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      z-index: 2;
+      animation: popAndZoom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s forwards;
+    }
+
+    .letter h2 {
+      color: #ff6088;
+      font-size: 1.2rem;
+    }
+
+    .letter p {
+      margin-top: 10px;
+      color: #555;
+      font-size: 0.85rem;
+      line-height: 1.3;
+    }
+
+    .confirm-btn {
+      margin-top: 20px;
+      padding: 10px 24px;
+      background-color: #ff85a2;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: bold;
+      border: 2px solid #fff;
+      border-radius: 25px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      position: relative;
+      z-index: 101;
+      transition: all 0.2s ease;
+    }
+
+    .confirm-btn:hover {
+      background-color: #ff6088;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+    }
+
+    @keyframes slideUp {
+      to { transform: translateY(0); }
     }
 
     @keyframes openFlap {
@@ -117,74 +168,14 @@
       }
     }
 
-    /* Envelope Front Pocket with semi-transparent texture */
-    .envelope-front {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 150px solid #f6b8c9;
-      border-right: 150px solid #f6b8c9;
-      border-top: 100px solid transparent;
-      border-bottom: 100px solid #f6b8c9;
-      z-index: 3;
-      
-      /* Animation 3: Envelope components fade out */
-      animation: fadeEnvelope 0.5s ease 1.7s forwards;
-    }
-
-    /* Textured Overlay for Front Pocket */
-    .envelope-front::after {
-      content: '';
-      position: absolute;
-      bottom: -100px;
-      left: -150px;
-      width: 300px;
-      height: 200px;
-      background-image: url('https://nicegirlslumber.neocities.org/waxpapertemp.png');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.35;
-      clip-path: polygon(0% 0%, 50% 50%, 100% 0%, 100% 100%, 0% 100%);
-      pointer-events: none;
-    }
-
-    .envelope-flap, .envelope-wrapper {
-      animation-fill-mode: forwards;
-    }
-
-    @keyframes fadeEnvelope {
+    @keyframes fadeOut {
       to {
         opacity: 0;
         visibility: hidden;
       }
     }
 
-    /* Clean Smooth Letter */
-    .letter {
-      position: absolute;
-      bottom: 10px;
-      left: 15px;
-      width: 270px;
-      
-      background-image: url('https://nicegirlslumber.neocities.org/waxpapertemp.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      
-      border-radius: 12px; /* Smooth rounded corners */
-      padding: 30px 20px;
-      box-sizing: border-box;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      z-index: 2;
-      
-      /* Animation 4: Hop Out and expand */
-      animation: letterPopAndZoom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s forwards;
-    }
-
-    @keyframes letterPopAndZoom {
+    @keyframes popAndZoom {
       0% {
         transform: translateY(0) scale(1);
         z-index: 2;
@@ -198,42 +189,17 @@
         z-index: 100;
       }
     }
-
-    /* Rounded Button with White Outline & Light Glow */
-    .confirm-btn {
-      margin-top: 20px;
-      padding: 10px 24px;
-      background-color: #ff85a2;
-      color: white;
-      border: 2px solid #ffffff;
-      border-radius: 25px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-      font-size: 0.95rem;
-      font-weight: bold;
-      cursor: pointer;
-      position: relative;
-      z-index: 101;
-      pointer-events: auto;
-      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .confirm-btn:hover {
-      background-color: #ff6088;
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
-    }
   </style>
 </head>
-
 <body>
 
   <div class="overlay" id="modalOverlay">
-    <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="envelope-wrapper">
       <div class="envelope-flap"></div>
       
       <div class="letter">
-        <h2 style="color: #ff6088; font-size: 1.2rem;">💌 You're Invited!</h2>
-        <p style="margin-top: 10px; color: #555; font-size: 0.85rem; line-height: 1.3;">Welcome to my bedroom site! Make yourself at home.</p>
+        <h2>You were cordially invited</h2>
+        <p>In attending my slumber party to relax our minds from our painful, painful exams! Good work in the effort or lack of. Gone until the next end of semester, but for now I hope you join us to stay up till dawn or sleep away in our cozy fort! (PS: If I'm not present I'm probably finishing up a task so have a look around?)</p>
         <button type="button" class="confirm-btn" onclick="dismissModal()">Come On In!</button>
       </div>
 
@@ -267,9 +233,7 @@
   <script>
     function dismissModal() {
       const overlay = document.getElementById('modalOverlay');
-      if (overlay) {
-        overlay.classList.add('hidden');
-      }
+      if (overlay) overlay.classList.add('hidden');
     }
 
     function playAudio() {
