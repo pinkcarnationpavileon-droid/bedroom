@@ -24,13 +24,48 @@
       height: 100vh;
     }
 
-    .Arrow1 { position: absolute; top: 26vw; left: 43vw; width: 90px; height: 90px; }
-    .Arrow2 { position: absolute; bottom: 4vw; right: 21vw; width: 90px; height: 90px; }
-    .Arrow3 { position: absolute; top: 10vw; left: 70vw; width: 80px; height: 80px; }
-    .Arrow4 { position: absolute; bottom: 13vw; right: 6vw; width: 70px; height: 70px; }
-    .Arrow5 { position: absolute; top: 5vw; left: 41vw; width: 80px; height: 80px; }
-    .Arrow6 { position: absolute; top: 5vw; left: 58vw; width: 78px; height: 75px; }
+    /* Navigation Wrappers */
+    .nav-item {
+      position: absolute;
+      display: inline-block;
+    }
 
+    .Arrow1 { top: 26vw; left: 43vw; width: 90px; height: 90px; }
+    .Arrow2 { bottom: 4vw; right: 21vw; width: 90px; height: 90px; }
+    .Arrow3 { top: 10vw; left: 70vw; width: 80px; height: 80px; }
+    .Arrow4 { bottom: 13vw; right: 6vw; width: 70px; height: 70px; }
+    .Arrow5 { top: 5vw; left: 41vw; width: 80px; height: 80px; }
+    .Arrow6 { top: 5vw; left: 58vw; width: 78px; height: 75px; }
+
+    /* Fade-up Tooltips for Arrows */
+    .tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(255, 255, 255, 0.9);
+      color: #ff6088;
+      padding: 5px 12px;
+      font-family: sans-serif;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 12px;
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+      z-index: 10;
+    }
+
+    .nav-item:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(-6px);
+    }
+
+    /* Modal Overlay */
     .overlay {
       position: fixed;
       inset: 0;
@@ -109,6 +144,7 @@
       pointer-events: none;
     }
 
+    /* Letter - Sharp Edges & Shifted Up */
     .letter {
       position: absolute;
       bottom: 10px;
@@ -117,7 +153,7 @@
       padding: 30px 20px;
       text-align: center;
       background: url('https://nicegirlslumber.neocities.org/waxpapertemp.png') center/cover no-repeat;
-      border-radius: 12px;
+      border-radius: 0px; /* Sharp edges */
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
       z-index: 2;
       animation: popAndZoom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s forwards;
@@ -125,18 +161,18 @@
 
     .letter h2 {
       color: #ff6088;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     .letter p {
       margin-top: 10px;
       color: #555;
-      font-size: 0.85rem;
-      line-height: 1.3;
+      font-size: 0.8rem;
+      line-height: 1.35;
     }
 
     .confirm-btn {
-      margin-top: 20px;
+      margin-top: 18px;
       padding: 10px 24px;
       background-color: #ff85a2;
       color: #fff;
@@ -175,17 +211,18 @@
       }
     }
 
+    /* Pop out and center closer to 40px from the top */
     @keyframes popAndZoom {
       0% {
         transform: translateY(0) scale(1);
         z-index: 2;
       }
       50% {
-        transform: translateY(-160px) scale(1.1);
+        transform: translateY(-200px) scale(1.1);
         z-index: 100;
       }
       100% {
-        transform: translateY(-80px) scale(1.5);
+        transform: translateY(-135px) scale(1.45);
         z-index: 100;
       }
     }
@@ -210,23 +247,29 @@
   <main class="container">
     <audio id="audio" src="https://file.garden/aXAN9qfqA36RH-Az/Concept%20website%200.3/benkirb-shine-11-268907%20(1).mp3"></audio>
 
-    <a href="https://nicegirlslumber.neocities.org/Diary">
-      <img src="https://nicegirlslumber.neocities.org/Arrow5.png" onmouseover="playAudio()" alt="diary entrance" class="Arrow1">
+    <a href="https://nicegirlslumber.neocities.org/Diary" class="nav-item Arrow1">
+      <span class="tooltip">Diary</span>
+      <img src="https://nicegirlslumber.neocities.org/Arrow5.png" onmouseover="playAudio()" alt="diary entrance" style="width:100%; height:100%;">
     </a>
-    <a href="https://nicegirlslumber.neocities.org/Guestbook">
-      <img src="https://nicegirlslumber.neocities.org/Arrow2.png" onmouseover="playAudio()" alt="guestbook" class="Arrow2">
+    <a href="https://nicegirlslumber.neocities.org/Guestbook" class="nav-item Arrow2">
+      <span class="tooltip">Guestbook</span>
+      <img src="https://nicegirlslumber.neocities.org/Arrow2.png" onmouseover="playAudio()" alt="guestbook" style="width:100%; height:100%;">
     </a> 
-    <a href="https://nicegirlslumber.neocities.org/Gallery">
-      <img src="https://nicegirlslumber.neocities.org/Arrow9.png" onmouseover="playAudio()" alt="gallery entrance" class="Arrow3">
+    <a href="https://nicegirlslumber.neocities.org/Gallery" class="nav-item Arrow3">
+      <span class="tooltip">Gallery</span>
+      <img src="https://nicegirlslumber.neocities.org/Arrow9.png" onmouseover="playAudio()" alt="gallery entrance" style="width:100%; height:100%;">
     </a> 
-    <a href="https://nicegirlslumber.neocities.org/Shrines">
-      <img src="https://nicegirlslumber.neocities.org/Arrow3.png" onmouseover="playAudio()" alt="Shrines" class="Arrow4">
+    <a href="https://nicegirlslumber.neocities.org/Shrines" class="nav-item Arrow4">
+      <span class="tooltip">Shrines</span>
+      <img src="https://nicegirlslumber.neocities.org/Arrow3.png" onmouseover="playAudio()" alt="Shrines" style="width:100%; height:100%;">
     </a>
-    <a href="https://nicegirlslumber.neocities.org/Dressup">
-      <img src="https://nicegirlslumber.neocities.org/Arrow10.png" onmouseover="playAudio()" alt="Dressup" class="Arrow5">
+    <a href="https://nicegirlslumber.neocities.org/Dressup" class="nav-item Arrow5">
+      <span class="tooltip">Dress Up</span>
+      <img src="https://nicegirlslumber.neocities.org/Arrow10.png" onmouseover="playAudio()" alt="Dressup" style="width:100%; height:100%;">
     </a>
-    <a href="https://nicegirlslumber.neocities.org/Balcony">
-      <img src="https://nicegirlslumber.neocities.org/Arrow8.png" onmouseover="playAudio()" alt="lets listen to music" class="Arrow6">
+    <a href="https://nicegirlslumber.neocities.org/Balcony" class="nav-item Arrow6">
+      <span class="tooltip">Music Balcony</span>
+      <img src="https://nicegirlslumber.neocities.org/Arrow8.png" onmouseover="playAudio()" alt="lets listen to music" style="width:100%; height:100%;">
     </a>
   </main>
 
