@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>make urself at home!!</title>
+  <link rel="icon" type="image/jpeg" href="https://nicegirlslumber.neocities.org/newfavicon.png" alt="myface">
+  <style>
+    html {
+      font-size: 95%;
+      height: 100%;
+      margin: 0; 
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      cursor: auto;
+    }
+    body { 
+      background-image: url(https://file.garden/aXAN9qfqA36RH-Az/Concept%20website%200.3/realbedroomgurl.png);
+      background-position: center; 
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      height: 100vh;
+      overflow: hidden; /* Prevents scrollbars when modal is active */
+    }
 
+    /* Arrow Styles */
+    .Arrow1 { position: absolute; top: 26vw; left: 43vw; height: 90px; width: 90px; }
+    .Arrow2 { position: absolute; bottom: 4vw; right: 21vw; height: 90px; width: 90px; }
+    .Arrow3 { position: absolute; top: 10vw; left: 70vw; height: 80px; width: 80px; }
+    .Arrow4 { position: absolute; bottom: 13vw; right: 6vw; height: 70px; width: 70px; }
+    .Arrow5 { position: absolute; top: 5vw; left: 41vw; height: 80px; width: 80px; }
+    .Arrow6 { position: absolute; top: 5vw; left: 58vw; height: 75px; width: 78px; }
+
+    /* Dark Overlay / Faded Background */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6); /* Dim background */
+      backdrop-filter: blur(3px); /* Subtle background blur effect */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 1000;
+    }
+
+    /* Invitation Card Styling */
+    .invitation-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      max-width: 320px;
+      width: 80%;
+      
+      /* Animation settings for slide-up */
+      transform: translateY(0);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Hidden State for Fade / Slide Out */
+    .overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .overlay.hidden .invitation-card {
+      transform: translateY(100px); /* Slides downward on close */
+    }
+
+    /* Custom Confirmation Button */
+    .confirm-btn {
+      margin-top: 20px;
+      padding: 10px 24px;
+      background-color: #ff85a2;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .confirm-btn:hover {
+      background-color: #ff6088;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="overlay" id="modalOverlay">
+    <div class="invitation-card">
+      <h2>✨ You're Invited! ✨</h2>
+      <p style="margin-top: 10px; color: #555;">Welcome to my bedroom site. Make yourself at home!</p>
+      <button class="confirm-btn" onclick="closeInvitation()">Come On In!</button>
+    </div>
+  </div>
+
+  <main class="container">
+    <audio id="audio" src="https://file.garden/aXAN9qfqA36RH-Az/Concept%20website%200.3/benkirb-shine-11-268907%20(1).mp3"></audio>
+
+    <a href="https://nicegirlslumber.neocities.org/Diary">
+      <img src="https://nicegirlslumber.neocities.org/Arrow5.png" onmouseover="playAudio()" alt="diary entrance" class="Arrow1">
+    </a>
+    <a href="https://nicegirlslumber.neocities.org/Guestbook">
+      <img src="https://nicegirlslumber.neocities.org/Arrow2.png" onmouseover="playAudio()" alt="guestbook" class="Arrow2">
+    </a> 
+    <a href="https://nicegirlslumber.neocities.org/Gallery">
+      <img src="https://nicegirlslumber.neocities.org/Arrow9.png" onmouseover="playAudio()" alt="gallery entrance" class="Arrow3">
+    </a> 
+    <a href="https://nicegirlslumber.neocities.org/Shrines">
+      <img src="https://nicegirlslumber.neocities.org/Arrow3.png" onmouseover="playAudio()" alt="Shrines" class="Arrow4">
+    </a>
+    <a href="https://nicegirlslumber.neocities.org/Dressup">
+      <img src="https://nicegirlslumber.neocities.org/Arrow10.png" onmouseover="playAudio()" alt="Dressup" class="Arrow5">
+    </a>
+    <a href="https://nicegirlslumber.neocities.org/Balcony">
+      <img src="https://nicegirlslumber.neocities.org/Arrow8.png" onmouseover="playAudio()" alt="lets listen to music" class="Arrow6">
+    </a>
+  </main>
+
+  <script>
+    function closeInvitation() {
+      // Add 'hidden' class to trigger CSS transition for fade out & slide
+      document.getElementById('modalOverlay').classList.add('hidden');
+    }
+
+    function playAudio() {
+      const audio = document.getElementById('audio');
+      audio.currentTime = 0;
+      audio.play().catch(() => {
+        // Prevents console errors if user hasn't interacted with document yet
+      });
+    }
+  </script>
+
+</body>
+</html>
