@@ -46,23 +46,17 @@
       bottom: 100%;
       left: 50%;
       transform: translateX(-50%) translateY(10px);
-      
-      background-image: url('https://nicegirlslumber.neocities.org/commentstemp.png');
-      background-size: 100% 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      
+      background: url('https://nicegirlslumber.neocities.org/commentstemp.png') center/100% 100% no-repeat;
       color: #ff6088;
       padding: 10px 22px;
       font-size: 1.1rem;
       font-weight: bold;
       white-space: nowrap;
-      
-      filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
       pointer-events: none;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+      transition: all 0.3s ease;
       z-index: 10;
     }
 
@@ -75,7 +69,7 @@
     .overlay {
       position: fixed;
       inset: 0;
-      background-color: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(5px);
       display: flex;
       justify-content: center;
@@ -94,7 +88,7 @@
       position: relative;
       width: 300px;
       height: 200px;
-      background-color: #f2acbf;
+      background: #f2acbf;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
       transform: translateY(100vh);
       animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
@@ -158,7 +152,7 @@
       padding: 30px 20px;
       text-align: center;
       background: url('https://nicegirlslumber.neocities.org/waxpapertemp.png') center/cover no-repeat;
-      border-radius: 0px;
+      border-radius: 0;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
       z-index: 2;
       animation: popAndZoom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s forwards;
@@ -179,7 +173,7 @@
     .confirm-btn {
       margin-top: 18px;
       padding: 8px 24px;
-      background-color: #ff85a2;
+      background: #ff85a2;
       color: #fff;
       font-family: inherit;
       font-size: 1.1rem;
@@ -194,7 +188,7 @@
     }
 
     .confirm-btn:hover {
-      background-color: #ff6088;
+      background: #ff6088;
       transform: scale(1.05);
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
     }
@@ -254,27 +248,27 @@
 
     <a href="https://nicegirlslumber.neocities.org/Diary" class="nav-item Arrow1">
       <span class="tooltip">Diary</span>
-      <img src="https://nicegirlslumber.neocities.org/Arrow5.png" onmouseover="playAudio()" alt="diary entrance" style="width:100%; height:100%;">
+      <img src="https://nicegirlslumber.neocities.org/Arrow5.png" onmouseover="playAudio()" alt="diary entrance" style="width: 100%; height: 100%;">
     </a>
     <a href="https://nicegirlslumber.neocities.org/Guestbook" class="nav-item Arrow2">
       <span class="tooltip">Guestbook</span>
-      <img src="https://nicegirlslumber.neocities.org/Arrow2.png" onmouseover="playAudio()" alt="guestbook" style="width:100%; height:100%;">
+      <img src="https://nicegirlslumber.neocities.org/Arrow2.png" onmouseover="playAudio()" alt="guestbook" style="width: 100%; height: 100%;">
     </a> 
     <a href="https://nicegirlslumber.neocities.org/Gallery" class="nav-item Arrow3">
       <span class="tooltip">Gallery</span>
-      <img src="https://nicegirlslumber.neocities.org/Arrow9.png" onmouseover="playAudio()" alt="gallery entrance" style="width:100%; height:100%;">
+      <img src="https://nicegirlslumber.neocities.org/Arrow9.png" onmouseover="playAudio()" alt="gallery entrance" style="width: 100%; height: 100%;">
     </a> 
     <a href="https://nicegirlslumber.neocities.org/Shrines" class="nav-item Arrow4">
       <span class="tooltip">Shrines</span>
-      <img src="https://nicegirlslumber.neocities.org/Arrow3.png" onmouseover="playAudio()" alt="Shrines" style="width:100%; height:100%;">
+      <img src="https://nicegirlslumber.neocities.org/Arrow3.png" onmouseover="playAudio()" alt="Shrines" style="width: 100%; height: 100%;">
     </a>
     <a href="https://nicegirlslumber.neocities.org/Dressup" class="nav-item Arrow5">
       <span class="tooltip">Dress Up</span>
-      <img src="https://nicegirlslumber.neocities.org/Arrow10.png" onmouseover="playAudio()" alt="Dressup" style="width:100%; height:100%;">
+      <img src="https://nicegirlslumber.neocities.org/Arrow10.png" onmouseover="playAudio()" alt="Dressup" style="width: 100%; height: 100%;">
     </a>
     <a href="https://nicegirlslumber.neocities.org/Balcony" class="nav-item Arrow6">
       <span class="tooltip">Music Balcony</span>
-      <img src="https://nicegirlslumber.neocities.org/Arrow8.png" onmouseover="playAudio()" alt="lets listen to music" style="width:100%; height:100%;">
+      <img src="https://nicegirlslumber.neocities.org/Arrow8.png" onmouseover="playAudio()" alt="lets listen to music" style="width: 100%; height: 100%;">
     </a>
   </main>
 
