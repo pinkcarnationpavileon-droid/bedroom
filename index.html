@@ -58,7 +58,7 @@
       pointer-events: none;
     }
 
-    /* Envelope Box */
+    /* Envelope Box Base */
     .envelope-wrapper {
       position: relative;
       width: 300px;
@@ -77,7 +77,7 @@
       }
     }
 
-    /* Top Flap */
+    /* Top Flap with semi-transparent texture */
     .envelope-flap {
       position: absolute;
       top: 0;
@@ -94,6 +94,22 @@
       animation: openFlap 0.5s ease 1.0s forwards;
     }
 
+    /* Textured Overlay for Top Flap */
+    .envelope-flap::after {
+      content: '';
+      position: absolute;
+      top: -110px;
+      left: -150px;
+      width: 300px;
+      height: 110px;
+      background-image: url('https://nicegirlslumber.neocities.org/waxpapertemp.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35; /* Controls texture transparency over pink */
+      clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+      pointer-events: none;
+    }
+
     @keyframes openFlap {
       to {
         transform: rotateX(180deg);
@@ -101,7 +117,7 @@
       }
     }
 
-    /* Envelope Front Pocket */
+    /* Envelope Front Pocket with semi-transparent texture */
     .envelope-front {
       position: absolute;
       bottom: 0;
@@ -116,6 +132,22 @@
       
       /* Animation 3: Envelope components fade out */
       animation: fadeEnvelope 0.5s ease 1.7s forwards;
+    }
+
+    /* Textured Overlay for Front Pocket */
+    .envelope-front::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -150px;
+      width: 300px;
+      height: 200px;
+      background-image: url('https://nicegirlslumber.neocities.org/waxpapertemp.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35; /* Controls texture transparency over pink */
+      clip-path: polygon(0% 0%, 50% 50%, 100% 0%, 100% 100%, 0% 100%);
+      pointer-events: none;
     }
 
     .envelope-flap, .envelope-wrapper {
@@ -141,7 +173,6 @@
       background-position: center;
       background-repeat: no-repeat;
       
-      /* 0px radius removes rounded corners */
       border-radius: 0px; 
       
       /* Rough / Jagged paper edge clip path */
@@ -184,7 +215,7 @@
       background-color: #ff85a2;
       color: white;
       border: none;
-      border-radius: 0px; /* Sharp button corners to match */
+      border-radius: 0px;
       font-size: 0.95rem;
       font-weight: bold;
       cursor: pointer;
